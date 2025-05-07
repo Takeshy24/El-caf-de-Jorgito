@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Arte del Café - Inicio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+</head>
+<body class="dark:bg-black bg-stone-100 text-black">
+    <header class="bg-stone-100 border-b-4 border-black fixed w-full top-0 left-0 z-50 dark:bg-black dark:border-gray-700">
+        <div class="container mx-auto p-4 flex justify-between items-center ">
+            <a href="#" class="flex items-center">
+                <img src="/Proyecto/img/logo.png " alt="Logo" class="h-16 sm:h-20 dark:hidden">
+                <img src="/Proyecto/img/logo_dark.png" alt="Logo" class="h-16 sm:h-20 hidden dark:block">
+            </a>
+            <span 
+                id="menuIcon" 
+                class="cursor-pointer mx-2 md:hidden block text-3xl text-black dark:text-white">
+                <ion-icon name="menu" onclick="toggleMenu(this)"></ion-icon>
+            </span>
+            <ul id="menuList" class="md:flex md:items-center md:justify-between z-[-1] md:z-auto md:static absolute bg-stone-100 w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500 dark:bg-black">
+                <li class="mx-4 my-6 md:my-0">
+                    <a href="#" class="text-2xl font-semibold text-black px-4 hover:underline dark:text-white" onclick="closeMenu()">Tienda</a>
+                </li>
+                <li class="mx-4 my-6 md:my-0">
+                    <a href="#" class="text-2xl font-semibold text-black px-4 hover:underline dark:text-white" onclick="closeMenu()">Suscripción</a>
+                </li>
+                <li class="mx-4 my-6 md:my-0">
+                    <a href="#" class="text-2xl font-semibold text-black px-4 hover:underline dark:text-white" onclick="closeMenu()">Nuestro café</a>
+                </li>
+                <li class="mx-4 my-6 md:my-0">
+                    <a href="#" class="text-2xl font-semibold text-black px-4 hover:underline dark:text-white" onclick="closeMenu()">Blog</a>
+                </li>
+                <li class="mx-4 my-6 md:my-0">
+                    <a href="#" class="text-2xl font-semibold text-black px-4 hover:underline dark:text-white" onclick="closeMenu()">Contáctanos</a>
+                </li>
+            </ul>
+            <div class="flex items-center space-x-6">
+                <a href="#" class="text-black dark:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </a>
+                <button id="themeToggle" class="text-black dark:text-white">
+                    <ion-icon name="moon" class="h-6 w-6"></ion-icon>
+                </button>
+                <a href="#" class="text-black dark:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l1.35 5.4a2 2 0 002 1.6h5.3a2 2 0 002-1.6L17 13M5.4 5h13.2M9 21h6" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <script>
+            function toggleMenu(icon) {
+                const list = document.getElementById('menuList');
+                icon.name === 'menu'
+                    ? (icon.name = 'close', list.classList.add('top-[80px]', 'opacity-100'))
+                    : (icon.name = 'menu', list.classList.remove('top-[80px]', 'opacity-100'));
+            }
+
+            function closeMenu() {
+                const menu = document.querySelector('ion-icon[name="close"]');
+                if (menu) toggleMenu(menu);
+            }
+        </script>
+        <script>
+            tailwind.config = {
+                darkMode: 'class',
+            }
+        </script>
+        <script>
+            const themeToggle = document.getElementById('themeToggle');
+            const htmlElement = document.documentElement;
+            if (localStorage.getItem('theme') === 'dark') {
+                htmlElement.classList.add('dark');
+                themeToggle.innerHTML = '<ion-icon name="sunny"></ion-icon>';
+            } else {
+                htmlElement.classList.remove('dark');
+                themeToggle.innerHTML = '<ion-icon name="moon"></ion-icon>';
+            }
+            themeToggle.addEventListener('click', () => {
+                if (htmlElement.classList.contains('dark')) {
+                    htmlElement.classList.remove('dark');
+                    themeToggle.innerHTML = '<ion-icon name="moon"></ion-icon>';
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    htmlElement.classList.add('dark');
+                    themeToggle.innerHTML = '<ion-icon name="sunny"></ion-icon>';
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        </script>
+    </header>
+
+    <section class="h-screen bg-[url('/Proyecto/img/fondo.png')] bg-cover bg-center relative border-b-4 border-black dark:border-gray-700">
+        <div class="relative z-10 flex justify-center items-center h-screen">
+            <div class="text-center text-white">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">Buen café en casa,<br> preparado a tu manera.</h1>
+                <p class="text-base sm:text-lg lg:text-xl mb-8">Un café que respeta, admira y apoya sus orígenes.</p>
+                <button class="bg-stone-100 text-black px-6 sm:px-10 py-4 sm:py-6 font-bold rounded-full border-black border-2 hover:border-4 dark:text-white dark:border-gray-700 dark:bg-black">Pide tu café</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="h-1/4 bg-stone-100 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-center border-b-4 border-black dark:border-gray-700 dark:bg-black">
+        <div class="bg-stone-100 p-6 flex flex-col items-center my-10 dark:bg-black">
+            <img src="/Proyecto/img/carro.png" alt="" class="w-1/4 h-1/2 dark:hidden">
+            <img src="/Proyecto/img/carro_dark.png" alt="" class="w-1/4 h-1/2 hidden dark:block">
+            <h3 class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-800 mt-4 dark:text-white">Envío 24h/48h en Perú</h3>
+            <p class="text-base sm:text-lg text-gray-600 mt-2 dark:text-white">Gratis para pedidos S/ 60+</p>
+        </div>
+        <div class="bg-stone-100 p-6 flex flex-col items-center my-10 dark:bg-black">
+            <img src="/Proyecto/img/grano.png" alt="" class="w-1/4 h-1/2 dark:hidden">
+            <img src="/Proyecto/img/grano_dark.png" alt="" class="w-1/4 h-1/2 hidden dark:block"> 
+            <h3 class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-800 mt-4 dark:text-white">Café fresco y de temporada</h3>
+            <p class="text-base sm:text-lg text-gray-600 mt-2 dark:text-white">Tostado semanalmente</p>
+        </div>
+        <div class="bg-stone-100 p-6 flex flex-col items-center my-10 dark:bg-black">
+            <img src="/Proyecto/img/flor.png" alt="" class="w-1/4 h-1/2 dark:hidden">
+            <img src="/Proyecto/img/flor_dark.png" alt="" class="w-1/4 h-1/2 hidden dark:block">
+            <h3 class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-800 mt-4 dark:text-white">Café sostenible y con trazabilidad</h3>
+            <p class="text-base sm:text-lg text-gray-600 mt-2 dark:text-white">Procedente de pequeños productores</p>
+        </div>
+    </section>
+
+    <section class="bg-stone-100 border-b-4 border-black py-10 dark:bg-black dark:dark:border-gray-700">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-800 text-center dark:text-white">Nuestros Favoritos</h2>
+    </section>
+
+    <section class="container mx-auto px-6 py-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="border-4 border-black bg-stone-100 p-4 rounded-lg dark:bg-gray-900 dark:border-gray-600">
+                <img src="/Proyecto/img/c1.png" alt="French Press" class="w-auto h-auto object-cover rounded">
+                <div class="border-t-4 border-black mb-4 pt-4 text-center dark:border-gray-600">
+                    <h3 class="text-base sm:text-lg font-bold dark:text-white">French Press - Bialetti</h3>
+                    <p class="mt-2 text-sm sm:text-base text-white">S/ 120</p>
+                </div>
+            </div>
+            <div class="border-4 border-black bg-stone-100 p-4 rounded-lg dark:bg-gray-900 dark:border-gray-600">
+                <img src="/Proyecto/img/c2.png" alt="French Press" class="w-auto h-auto object-cover rounded">
+                <div class="border-t-4 border-black  mt-4 pt-4 text-center dark:border-gray-600">
+                    <h3 class="text-base sm:text-lg font-bold dark:text-white">V60 Range Server - Bloom - Hario</h3>
+                    <p class="mt-2 text-sm sm:text-base text-white">S/ 140</p>
+                </div>
+            </div>
+            <div class="border-4 border-black bg-stone-100 p-4 rounded-lg dark:bg-gray-900 dark:border-gray-600">
+                <img src="/Proyecto/img/c3.png" alt="French Press" class="w-auto h-auto object-cover rounded">
+                <div class="border-t-4 border-black  mt-4 pt-4 text-center dark:border-gray-600">
+                    <h3 class="text-base sm:text-lg font-bold dark:text-white">Molino Manual Prism - Hario</h3>
+                    <p class="mt-2 text-white">S/ 2100</p>
+                </div>
+            </div>
+            <div class="border-4 border-black bg-stone-100 p-4 rounded-lg dark:bg-gray-900 dark:border-gray-600">
+                <img src="/Proyecto/img/c4.png" alt="French Press" class="w-auto h-auto object-cover rounded">
+                <div class="border-t-4 border-black  mt-4 pt-4 text-center dark:border-gray-600">
+                    <h3 class="text-base sm:text-lg font-bold dark:text-white">Moka Express - Bialetti</h3>
+                    <p class="mt-2 text-sm sm:text-base text-white">S/ 44</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="grid grid-cols-1 md:grid-cols-3 border-t-4 border-b-4 border-black dark:border-gray-700">
+            <div class="bg-indigo-400 p-10 flex flex-col items-center dark:bg-indigo-900">
+                <h3 class="text-xl sm:text-2xl md:text-3xl mb-4 dark:text-white">Guía de elaboración</h3>
+                <h2 class="text-2xl sm:text-4xl md:text-5xl font-bold mb-6 dark:text-white">V60</h2>
+                <img src="/Proyecto/img/cafetera1.png" alt="V60" class="w-2/3 h-auto dark:hidden">
+                <img src="/Proyecto/img/cafetera1_dark.png" alt="V60" class="w-2/3 h-auto hidden dark:block">
+                <button class="bg-black text-white px-8 py-2 text-sm sm:text-base md:text-lg rounded-full mt-6">Leer más</button>
+            </div>
+            <div class="bg-amber-400 p-10 flex flex-col items-center dark:bg-amber-900">
+                <h3 class="text-xl sm:text-2xl md:text-3xl mb-4 dark:text-white">Guía de elaboración</h3>
+                <h2 class="text-2xl sm:text-4xl md:text-5xl font-bold mb-6 dark:text-white">Moka Pot</h2>
+                <img src="/Proyecto/img/cafetera2.png" alt="MOKA POT" class="w-2/3 h-auto dark:hidden">
+                <img src="/Proyecto/img/cafetera2_dark.png" alt="MOKA POT" class="w-2/3 h-auto hidden dark:block">
+                <button class="bg-black text-white px-8 py-2 text-sm sm:text-base md:text-lg rounded-full mt-6">Leer más</button>
+            </div>
+            <div class="bg-red-400 p-10 flex flex-col items-center dark:bg-red-900">
+                <h3 class="text-xl sm:text-2xl md:text-3xl mb-4 dark:text-white">Guía de elaboración</h3>
+                <h2 class="text-2xl sm:text-4xl md:text-5xl font-bold mb-6 dark:text-white">Aeropress</h2>
+                <img src="/Proyecto/img/cafetera3.png" alt="AEROPRESS" class="w-2/3 h-auto dark:hidden">
+                <img src="/Proyecto/img/cafetera3_dark.png" alt="AEROPRESS" class="w-2/3 h-auto hidden dark:block">
+                <button class="bg-black text-white px-8 py-2 text-sm sm:text-base md:text-lg rounded-full mt-6">Leer más</button>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="bg-stone-100 border-b-4 border-black py-10 dark:border-gray-700 dark:bg-black">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-800 text-center dark:text-white">Cafés Destacados</h2>
+        </div>  
+    </section>
+
+    <section class="container mx-auto px-6 py-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6"">
+            <div class="border-4 border-black bg-stone-100 p-4 rounded-lg dark:bg-gray-900 dark:border-gray-600">
+                <img src="/Proyecto/img/cafe1.png" alt="EL BALAR" class="w-full h-auto object-cover rounded">
+                <div class="border-t-4 border-black mt-4 pt-4 text-center dark:border-gray-600">
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold dark:text-white">EL BALAR</h3>
+                    <p class="mt-1 text-sm sm:text-base md:text-lg dark:text-white">Costa Rica</p>
+                    <p class="mt-2 text-sm sm:text-base md:text-lg text-black dark:text-white">S/ 72</p>
+                </div>
+            </div>
+            <div class="border-4 border-black bg-stone-100 p-4 rounded-lg dark:bg-gray-900 dark:border-gray-600">
+                <img src="/Proyecto/img/cafe2.png" alt="EL BALAR" class="w-full h-auto object-cover rounded">
+                <div class="border-t-4 border-black mt-4 pt-4 text-center dark:border-gray-600">
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold dark:text-white">Anniversary Blend</h3>
+                    <p class="mt-1 text-sm sm:text-base md:text-lg dark:text-white">Etiopía</p>
+                    <p class="mt-2 text-sm sm:text-base md:text-lg text-black dark:text-white">S/ 64</p>
+                </div>
+            </div>
+            <div class="border-4 border-black bg-stone-100 p-4 rounded-lg dark:bg-gray-900 dark:border-gray-600">
+                <img src="/Proyecto/img/cafe3.png" alt="EL BALAR" class="w-full h-auto object-cover rounded">
+                <div class="border-t-4 border-black mt-4 pt-4 text-center dark:border-gray-600">
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold dark:text-white">Valle de Oro</h3>
+                    <p class="mt-1 text-sm sm:text-base md:text-lg dark:text-white">El Salvador</p>
+                    <p class="mt-2 text-sm sm:text-base md:text-lg text-black dark:text-white">S/ 58</p>
+                </div>
+            </div>
+            <div class="border-4 border-black bg-stone-100 p-4 rounded-lg dark:bg-gray-900 dark:border-gray-600">
+                <img src="/Proyecto/img/cafe4.png" alt="EL BALAR" class="w-full h-auto object-cover rounded">
+                <div class="border-t-4 border-black mt-4 pt-4 text-center dark:border-gray-600">
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold dark:text-white">Platanillo</h3>
+                    <p class="mt-1 text-sm sm:text-base md:text-lg dark:text-white">Guatemala</p>
+                    <p class="mt-2 text-sm sm:text-base md:text-lg text-black dark:text-white">S/ 56</p>
+                </div>
+            </div>
+            <div class="border-4 border-black bg-stone-100 p-4 rounded-lg dark:bg-gray-900 dark:border-gray-600">
+                <img src="/Proyecto/img/cafe5.png" alt="EL BALAR" class="w-full h-auto object-cover rounded">
+                <div class="border-t-4 border-black mt-4 pt-4 text-center dark:border-gray-600">
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold dark:text-white">Muthuthuini</h3>
+                    <p class="mt-1 text-sm sm:text-base md:text-lg dark:text-white">Kenya</p>
+                    <p class="mt-2 text-sm sm:text-base md:text-lg text-black dark:text-white">S/ 66</p>
+                </div>
+            </div>
+            <div class="border-4 border-black bg-stone-100 p-4 rounded-lg dark:bg-gray-900 dark:border-gray-600">
+                <img src="/Proyecto/img/cafe6.png" alt="EL BALAR" class="w-full h-auto object-cover rounded">
+                <div class="border-t-4 border-black mt-4 pt-4 text-center dark:border-gray-600">
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold dark:text-white">Klem</h3>
+                    <p class="mt-1 text-sm sm:text-base md:text-lg dark:text-white">Brasil</p>
+                    <p class="mt-2 text-sm sm:text-base md:text-lg text-black dark:text-white">S/ 54</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative bg-stone-100 border-t-4 border-black py-10 dark:bg-black dark:border-gray-700">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-800 text-center mb-8 dark:text-white">Explora Nuestro Mundo</h2>
+        <div id="carousel" class="relative" data-carousel="static">
+            <div class="relative h-[500px] overflow-hidden rounded-lg">
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img src="/Proyecto/img/slide1.jpg" class="absolute block w-full h-full object-cover" alt="Slide 1">
+                </div>
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img src="Proyecto/img/slide2.jpg" class="absolute block w-full h-full object-cover" alt="Slide 2">
+                </div>
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img src="Proyecto/img/slide3.jpg" class="absolute block w-full h-full object-cover" alt="Slide 3">
+                </div>
+            </div>
+            <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+                <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-black group-hover:bg-gray-800/60">
+                    <ion-icon name="chevron-back" class="text-white text-lg"></ion-icon>
+                </span>
+            </button>
+            <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+                <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-black group-hover:bg-gray-800/60">
+                    <ion-icon name="chevron-forward" class="text-white text-lg"></ion-icon>
+                </span>
+            </button>
+        </div>
+    </section>
+    
+
+    <section class="bg-stone-100 border-t-4 border-black py-10 dark:bg-black dark:border-gray-700">
+        <div class="container mx-auto px-6">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold text-center mb-8 dark:text-white">Contáctanos</h2>
+            <form class="max-w-xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="form-group">
+                        <label for="nombre" class="block text-sm md:text-base font-medium text-gray-700 dark:text-gray-400">Nombre</label>
+                        <input type="text" id="nombre" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" placeholder="Escribe tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidos" class="block text-sm md:text-base font-medium text-gray-700 dark:text-gray-400">Apellidos</label>
+                        <input type="text" id="apellidos" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" placeholder="Escribe tus apellidos" required>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div class="form-group">
+                        <label for="celular" class="block text-sm md:text-base font-medium text-gray-700 dark:text-gray-400">Número de Celular</label>
+                        <input type="tel" id="celular" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" placeholder="Escribe tu número de celular" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="correo" class="block text-sm md:text-base font-medium text-gray-700 dark:text-gray-400">Correo Electrónico</label>
+                        <input type="email" id="correo" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" placeholder="Escribe tu correo" required>
+                    </div>
+                </div>
+                <div class="text-center mt-8">
+                    <button type="submit" class="bg-black text-white px-6 py-3 text-sm sm:text-base md:text-lg rounded-md border-2 hover:border-4 dark:text-white dark:border-gray-700">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <div class="fixed bottom-4 right-4 z-50">
+        <a href="https://wa.me/51994188349" target="_blank">
+            <button class="bg-green-500 text-white p-4 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50">
+                <ion-icon name="logo-whatsapp" class="w-8 h-8"></ion-icon>
+            </button>
+        </a>
+    </div>
+    
+    <footer class="bg-black text-white py-10 dark:bg-gray-900">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-sm hover:underline">Cafeterías</a></li>
+                    <li><a href="#" class="text-sm hover:underline">Instagram</a></li>
+                    <li><a href="#" class="text-sm hover:underline">Facebook</a></li>
+                    <li><a href="#" class="text-sm hover:underline">Review</a></li>
+                    <li><a href="#" class="text-sm hover:underline">Suscripción B2B</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-sm hover:underline">Trabaja con nosotros</a></li>
+                    <li><a href="#" class="text-sm hover:underline">Prensa</a></li>
+                    <li><a href="#" class="text-sm hover:underline">Pedidos</a></li>
+                    <li><a href="#" class="text-sm hover:underline">Contacto General</a></li>
+                    <li><a href="#" class="text-sm hover:underline">Canal Ético y de Denuncias</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-sm hover:underline">Términos y Condiciones</a></li>
+                    <li><a href="#" class="text-sm hover:underline">Privacidad</a></li>
+                    <li><a href="#" class="text-sm hover:underline">Envíos</a></li>
+                    <li><a href="#" class="text-sm hover:underline">Devoluciones</a></li>
+                    <li><a href="#" class="text-sm hover:underline">App Terms & Conditions</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <p class="text-sm">Av. Los Jardines 458, Urbanización San Andrés, Trujillo, Perú</p>
+                <p class="text-sm">(+51) 044-312456</p>
+            </div>
+        </div>
+        <div class="text-center text-xs mt-10">
+            &copy; 2024, El Arte del Café
+        </div>
+    </footer>
+
+</body>
+</html>
